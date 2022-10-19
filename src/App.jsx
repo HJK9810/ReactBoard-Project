@@ -4,6 +4,7 @@ import "./App.scss";
 import Layout from "./Layout/layout";
 import Board from "./Screen/board.screen";
 import Main from "./Screen/Main.screen";
+import View from "./Screen/view.screen";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Main />}></Route>
             <Route path="/board" element={<Board />}></Route>
-          </Routes>{" "}
+            <Route path="/view/:id" element={<View />}></Route>
+          </Routes>
         </Layout>
       </BrowserRouter>
     </div>

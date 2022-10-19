@@ -2,6 +2,7 @@ import Boardservice from "../Service/Boardservice";
 import React, {useEffect, useState} from "react";
 import {Container, Pagination, Table} from "react-bootstrap";
 import Moment from "react-moment";
+import {Link} from "react-router-dom";
 
 const Board = () => {
   const [post, setPost] = useState([]);
@@ -31,7 +32,7 @@ const Board = () => {
               <tr key={el.id} className="text-center">
                 <td>{el.id}</td>
                 <td className="list-group-item d-flex justify-content-between align-items-center">
-                  {el.title}
+                  <Link to={`/view/${el.id}`}>{el.title}</Link>
                   <span className="badge bg-success rounded-pill">{el.viewCnt}</span>
                 </td>
                 <td>
