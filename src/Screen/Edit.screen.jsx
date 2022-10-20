@@ -7,6 +7,7 @@ import Boardservice from "../Service/Boardservice";
 const Edit = () => {
   const {id} = useParams();
   const navigate = useNavigate();
+  const [validated, setValidated] = useState(false);
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -27,13 +28,31 @@ const Edit = () => {
     if (result) navigate(`/view/${id}`);
   };
 
+  const saveChange = async (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      const data = {
+        title: title,
+        text: text,
+      };
+      setValidated(true);
+      await Boardservice.update(id, data);
+      navigate(`/view/${id}`);
+    }
+  };
+
   return (
     <Container className="m-4">
       <button className="btn btn-outline-warning m-1" onClick={cancleBtn}>
         취소
       </button>
-      <button className="btn btn-outline-info m-1">작성</button>
-      <Form>
+      <button className="btn btn-outline-info m-1" onClick={saveChange}>
+        작성
+      </button>
+      <Form validated={validated}>
         <Table striped bordered className="table m-2">
           <thead>
             <tr>
@@ -48,7 +67,7 @@ const Edit = () => {
               <th className="text-center">제목</th>
               <td>
                 <Form.Group as={Col}>
-                  <Form.Control defaultValue={title} maxLength={256} />
+                  <Form.Control defaultValue={title} maxLength={256} required />
                 </Form.Group>
               </td>
             </tr>
@@ -66,7 +85,7 @@ const Edit = () => {
               <th className="text-center">내용</th>
               <td>
                 <Form.Group className="mb-3">
-                  <Form.Control as="textarea" rows={5} style={{resize: "none"}} defaultValue={text} />
+                  <Form.Control as="textarea" rows={5} style={{resize: "none"}} defaultValue={text} required />
                 </Form.Group>
               </td>
             </tr>
