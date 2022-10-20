@@ -16,6 +16,10 @@ class BoardService {
   async update(id, post) {
     return await Axios.post(`/api/edit/${id}`, post);
   }
+
+  async delete(id) {
+    return await Axios.delete(`/api/del/${id}`);
+  }
 }
 
 export default new BoardService();

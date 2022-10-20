@@ -15,6 +15,14 @@ const View = () => {
     });
   }, []);
 
+  const deleteOne = async (e) => {
+    const result = window.confirm("정말로 삭제하시겠습니까?\n\n 삭제시 해당 글은 복구되지 않습니다.");
+    if (result) {
+      await Boardservice.delete(Number(id));
+      navigate("/board");
+    }
+  };
+
   return (
     <Container className="m-4">
       <button className="btn btn-outline-secondary m-1" onClick={(e) => navigate("/board")}>
@@ -23,7 +31,9 @@ const View = () => {
       <button className="btn btn-outline-info m-1" onClick={(e) => navigate(`/edit/${id}`)}>
         수정
       </button>
-      <button className="btn btn-outline-warning m-1">삭제</button>
+      <button className="btn btn-outline-warning m-1" onClick={deleteOne}>
+        삭제
+      </button>
       <Table striped bordered className="table m-2">
         <thead>
           <tr>
