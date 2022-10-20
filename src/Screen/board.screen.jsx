@@ -1,8 +1,9 @@
 import Boardservice from "../Service/Boardservice";
 import React, {useEffect, useState} from "react";
-import {Container, Pagination, Table} from "react-bootstrap";
+import {Container, Table} from "react-bootstrap";
 import Moment from "react-moment";
 import {Link, useNavigate} from "react-router-dom";
+import Pagination from "./Pagination.screen";
 
 const Board = () => {
   const [post, setPost] = useState([]);
@@ -18,8 +19,11 @@ const Board = () => {
   }, [page]);
 
   return (
-    <Container>
-      <Table striped bordered hover className="table m-4">
+    <Container className="m-4">
+      <button className="btn btn-outline-secondary m-1" onClick={(e) => navigate("/add")}>
+        신규
+      </button>
+      <Table striped bordered hover className="table m-2">
         <thead>
           <tr className="text-center">
             <th style={{width: 10 + "%"}}>#</th>
@@ -44,9 +48,9 @@ const Board = () => {
           })}
         </tbody>
       </Table>
-      <button className="btn btn-outline-secondary m-1" onClick={(e) => navigate("/add")}>
-        신규
-      </button>
+      <div className="d-flex justify-content-center">
+        <Pagination pagination={pagination} setPage={(p) => setPage(p)} />
+      </div>
     </Container>
   );
 };
