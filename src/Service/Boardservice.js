@@ -10,11 +10,11 @@ class BoardService {
   }
 
   async addOne(post) {
-    return Axios.post("/api/add", post);
+    return await Axios.post("/api/add", post);
   }
 
   async update(id, post) {
-    return Axios.post(`/api/edit/${id}`, post);
+    return await Axios.post(`/api/edit/${id}`, post);
   }
 }
 
