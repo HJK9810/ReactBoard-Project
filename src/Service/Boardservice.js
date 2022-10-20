@@ -13,6 +13,10 @@ class BoardService {
     return await Axios.post("/api/add", post);
   }
 
+  viewforEdit(id) {
+    return Axios.get(`/api/edit/${id}`).then((res) => res.data);
+  }
+
   async update(id, post) {
     return await Axios.post(`/api/edit/${id}`, post);
   }
