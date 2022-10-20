@@ -1,11 +1,18 @@
 import {Container, Form, Table, Col} from "react-bootstrap";
 import Moment from "react-moment";
+import {useNavigate} from "react-router-dom";
 
 const Add = () => {
+  const navigate = useNavigate();
+
   return (
-    <Container>
+    <Container className="m-4">
+      <button className="btn btn-outline-warning m-1" onClick={(e) => navigate("/board")}>
+        취소
+      </button>
+      <button className="btn btn-outline-info m-1">작성</button>
       <Form>
-        <Table striped bordered className="table m-4">
+        <Table striped bordered className="table m-2">
           <thead>
             <tr>
               <th style={{width: 20 + "%"}} className="text-center"></th>

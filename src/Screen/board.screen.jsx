@@ -2,12 +2,13 @@ import Boardservice from "../Service/Boardservice";
 import React, {useEffect, useState} from "react";
 import {Container, Pagination, Table} from "react-bootstrap";
 import Moment from "react-moment";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Board = () => {
   const [post, setPost] = useState([]);
   const [pagination, setPagination] = useState({});
   const [page, setPage] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     Boardservice.findAll(page, 10).then((res) => {
@@ -43,6 +44,9 @@ const Board = () => {
           })}
         </tbody>
       </Table>
+      <button className="btn btn-outline-secondary m-1" onClick={(e) => navigate("/add")}>
+        신규
+      </button>
     </Container>
   );
 };

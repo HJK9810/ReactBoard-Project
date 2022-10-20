@@ -1,16 +1,29 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Container, Form, Table, Col} from "react-bootstrap";
 import Moment from "react-moment";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import Boardservice from "../Service/Boardservice";
 
 const Edit = () => {
   const {id} = useParams;
   const {post, setPost} = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    Boardservice.findOne(Number(id)).then((res) => {
+      setPost(res);
+      console.log(res);
+    });
+  }, [post]);
 
   return (
-    <Container>
+    <Container className="m-4">
+      <button className="btn btn-outline-warning m-1" onClick={(e) => navigate(`/view/${id}`)}>
+        취소
+      </button>
+      <button className="btn btn-outline-info m-1">작성</button>
       <Form>
-        <Table striped bordered className="table m-4">
+        <Table striped bordered className="table m-2">
           <thead>
             <tr>
               <th style={{width: 20 + "%"}} className="text-center">

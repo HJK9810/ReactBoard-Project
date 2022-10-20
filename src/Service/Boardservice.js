@@ -8,6 +8,14 @@ class BoardService {
   findOne(id) {
     return Axios.get(`/api/one/${id}`).then((res) => res.data);
   }
+
+  async addOne(post) {
+    return Axios.post("/api/add", post);
+  }
+
+  async update(id, post) {
+    return Axios.post(`/api/edit/${id}`, post);
+  }
 }
 
 export default new BoardService();
