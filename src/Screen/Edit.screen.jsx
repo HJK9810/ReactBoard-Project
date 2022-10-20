@@ -50,7 +50,7 @@ const Edit = () => {
         취소
       </button>
       <button className="btn btn-outline-info m-1" onClick={saveChange}>
-        작성
+        수정
       </button>
       <Form validated={validated}>
         <Table striped bordered className="table m-2">
