@@ -19,7 +19,7 @@ const Edit = () => {
       setTitle(res.title);
       setText(res.text);
       setDate(res.date);
-      setVisit(res.visit);
+      setVisit(res.viewCnt);
     });
   }, []);
 
@@ -67,7 +67,7 @@ const Edit = () => {
               <th className="text-center">제목</th>
               <td>
                 <Form.Group as={Col}>
-                  <Form.Control defaultValue={title} maxLength={256} required />
+                  <Form.Control defaultValue={title} maxLength={256} onChange={(e) => setTitle(e.target.value)} required />
                 </Form.Group>
               </td>
             </tr>
@@ -79,13 +79,13 @@ const Edit = () => {
             </tr>
             <tr>
               <th className="text-center">방문자수</th>
-              <td>{visit}</td>
+              <td>{visit + 1}</td>
             </tr>
             <tr>
               <th className="text-center">내용</th>
               <td>
                 <Form.Group className="mb-3">
-                  <Form.Control as="textarea" rows={5} style={{resize: "none"}} defaultValue={text} required />
+                  <Form.Control as="textarea" rows={5} style={{resize: "none"}} defaultValue={text} onChange={(e) => setText(e.target.value)} required />
                 </Form.Group>
               </td>
             </tr>
