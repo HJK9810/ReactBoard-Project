@@ -13,11 +13,13 @@ const Edit = () => {
   const [text, setText] = useState("");
   const [date, setDate] = useState();
   const [visit, setVisit] = useState(0);
+  const [editor, setEditor] = useState("");
 
   useEffect(() => {
     Boardservice.viewforEdit(Number(id)).then((res) => {
       setTitle(res.title);
       setText(res.text);
+      setEditor(res.editor);
       setDate(res.date);
       setVisit(res.viewCnt);
     });
@@ -70,6 +72,10 @@ const Edit = () => {
                   <Form.Control defaultValue={title} maxLength={256} onChange={(e) => setTitle(e.target.value)} required />
                 </Form.Group>
               </td>
+            </tr>
+            <tr>
+              <th className="text-center">작성자</th>
+              <td>{editor}</td>
             </tr>
             <tr>
               <th className="text-center">작성일</th>

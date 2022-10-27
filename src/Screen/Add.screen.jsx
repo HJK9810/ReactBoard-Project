@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Container, Form, Table, Col} from "react-bootstrap";
+import {Container, Form, Table, Col, Row} from "react-bootstrap";
 import Moment from "react-moment";
 import {useNavigate} from "react-router-dom";
 import Boardservice from "../Service/Boardservice";
@@ -8,6 +8,8 @@ const Add = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [editor, setEditor] = useState("");
+  const [passwd, setPasswd] = useState("");
   const [validated, setValidated] = useState(false);
 
   const cancleBtn = () => {
@@ -24,6 +26,8 @@ const Add = () => {
       const data = {
         title: title,
         text: text,
+        editor: editor,
+        passwd: passwd,
       };
       setValidated(true);
       await Boardservice.addOne(data);
@@ -55,6 +59,22 @@ const Add = () => {
                   <Form.Control placeholder="제목을 입력하세요" maxLength={256} onChange={(e) => setTitle(e.target.value)} required />
                   <Form.Control.Feedback type="invalid">제목을 입력해 주세요.</Form.Control.Feedback>
                 </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <th className="text-center">작성자</th>
+              <td>
+                <Row className="mb-3">
+                  <Form.Group as={Col}>
+                    <Form.Control placeholder="작성자를 입력하세요" maxLength={256} onChange={(e) => setEditor(e.target.value)} required />
+                    <Form.Control.Feedback type="invalid">작성자를 입력해 주세요.</Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <Form.Control type="password" placeholder="패스워드를 입력하세요" maxLength={256} onChange={(e) => setPasswd(e.target.value)} required />
+                    <Form.Control.Feedback type="invalid">패스워드를 입력해 주세요.</Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
               </td>
             </tr>
             <tr>

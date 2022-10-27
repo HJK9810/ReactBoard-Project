@@ -28,7 +28,8 @@ const Board = () => {
           <tr className="text-center">
             <th style={{width: 10 + "%"}}>#</th>
             <th>title</th>
-            <th style={{width: 20 + "%"}}>Date</th>
+            <th style={{width: 15 + "%"}}>작성자</th>
+            <th style={{width: 15 + "%"}}>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@ const Board = () => {
                   <Link to={`/view/${el.id}`}>{el.title}</Link>
                   <span className="badge bg-success rounded-pill">{el.viewCnt}</span>
                 </td>
+                <td>{el.editor}</td>
                 <td>
                   <Moment date={el.date} format="YYYY-MM-DD" />
                 </td>

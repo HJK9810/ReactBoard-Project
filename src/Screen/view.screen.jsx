@@ -47,6 +47,10 @@ const View = () => {
             <td>{post.title}</td>
           </tr>
           <tr>
+            <th className="text-center">작성자</th>
+            <td>{post.editor}</td>
+          </tr>
+          <tr>
             <th className="text-center">작성일</th>
             <td>
               <Moment date={post.date} format="YYYY-MM-DD" />
