@@ -9,25 +9,40 @@ const View = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
-  const [check, setCheck] = useState(false);
-
   useEffect(() => {
     Boardservice.findOne(Number(id)).then((res) => {
       setPost(res);
     });
   }, []);
 
-  const idCheck = async (e) => {
+  const idCheck = async () => {
+    const user = window.prompt("작성자 ID를 입력해 주세요", "");
+    const pw = window.prompt("작성자 password를 입력해 주세요", "");
+
+    let check = false;
     await Boardservice.login(id, user, pw).then((res) => {
-      res ? setCheck(true) : setCheck(false);
+      check = res ? false : true;
     });
+    return check;
+  };
+
+  const modifyOne = (e) => {
+    e.preventDefault();
+    const check = idCheck();
+    if (check) {
+      navigate(`/edit/${id}`);
+    }
   };
 
   const deleteOne = async (e) => {
-    const result = window.confirm("정말로 삭제하시겠습니까?\n\n 삭제시 해당 글은 복구되지 않습니다.");
-    if (result) {
-      await Boardservice.delete(Number(id));
-      navigate("/board");
+    e.preventDefault();
+    const check = idCheck();
+    if (check) {
+      const result = window.confirm("정말로 삭제하시겠습니까?\n\n 삭제시 해당 글은 복구되지 않습니다.");
+      if (result) {
+        await Boardservice.delete(Number(id));
+        navigate("/board");
+      }
     }
   };
 
@@ -36,7 +51,7 @@ const View = () => {
       <button className="btn btn-outline-secondary m-1" onClick={(e) => navigate("/board")}>
         목록
       </button>
-      <button className="btn btn-outline-info m-1" onClick={(e) => navigate(`/edit/${id}`)}>
+      <button className="btn btn-outline-info m-1" onClick={modifyOne}>
         수정
       </button>
       <button className="btn btn-outline-warning m-1" onClick={deleteOne}>
