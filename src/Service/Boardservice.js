@@ -24,6 +24,10 @@ class BoardService {
   async delete(id) {
     return await Axios.delete(`/api/del/${id}`);
   }
+
+  login(id, user, pw) {
+    return Axios.get(`/api/idCheck/${id}?id=${user}&passwd=${pw}`).then((res) => res.data);
+  }
 }
 
 export default new BoardService();

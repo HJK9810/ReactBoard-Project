@@ -9,11 +9,19 @@ const View = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
+  const [check, setCheck] = useState(false);
+
   useEffect(() => {
     Boardservice.findOne(Number(id)).then((res) => {
       setPost(res);
     });
   }, []);
+
+  const idCheck = async (e) => {
+    await Boardservice.login(id, user, pw).then((res) => {
+      res ? setCheck(true) : setCheck(false);
+    });
+  };
 
   const deleteOne = async (e) => {
     const result = window.confirm("정말로 삭제하시겠습니까?\n\n 삭제시 해당 글은 복구되지 않습니다.");
