@@ -84,10 +84,6 @@ const Add = () => {
               </td>
             </tr>
             <tr>
-              <th className="text-center">방문자수</th>
-              <td>0</td>
-            </tr>
-            <tr>
               <th className="text-center">내용</th>
               <td>
                 <Form.Group className="mb-3">
