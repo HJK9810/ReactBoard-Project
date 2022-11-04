@@ -19,7 +19,7 @@ const Edit = () => {
     Boardservice.viewforEdit(Number(id)).then((res) => {
       setTitle(res.title);
       setText(res.text);
-      setEditor(res.editor);
+      setEditor(res.editer);
       setDate(res.date);
       setVisit(res.viewCnt);
     });

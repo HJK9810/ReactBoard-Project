@@ -12,10 +12,8 @@ const Board = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    Boardservice.findAll(page, 10).then((res) => {
-      setPost(res.content);
-      setPagination({number: res.number, totalPages: res.totalPages, first: res.first, last: res.last});
-    });
+    Boardservice.findAll(page, 10).then((res) => setPost(res));
+    Boardservice.forPagination(page, 10).then((res) => setPagination({number: res.number, totalPages: res.totalPages, first: res.first, last: res.last}));
   }, [page]);
 
   return (
@@ -41,7 +39,7 @@ const Board = () => {
                   <Link to={`/view/${el.id}`}>{el.title}</Link>
                   <span className="badge bg-success rounded-pill">{el.viewCnt}</span>
                 </td>
-                <td>{el.editor}</td>
+                <td>{el.editer}</td>
                 <td>
                   <Moment date={el.date} format="YYYY-MM-DD" />
                 </td>

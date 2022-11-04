@@ -26,7 +26,7 @@ const Add = () => {
       const data = {
         title: title,
         text: text,
-        editor: editor,
+        editer: editor,
         passwd: passwd,
       };
       setValidated(true);

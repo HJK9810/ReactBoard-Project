@@ -71,7 +71,7 @@ const View = () => {
           </tr>
           <tr>
             <th className="text-center">작성자</th>
-            <td>{post.editor}</td>
+            <td>{post.editer}</td>
           </tr>
           <tr>
             <th className="text-center">작성일</th>

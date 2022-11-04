@@ -2,7 +2,11 @@ import Axios from "../Axios";
 
 class BoardService {
   findAll(page = 0, size = 10) {
-    return Axios.get(`/api/list?page=${page}&size=${size}&sort=ID,desc`).then((res) => res.data);
+    return Axios.get(`/api/list?page=${page}&size=${size}`).then((res) => res.data);
+  }
+
+  forPagination(page = 0, size = 10) {
+    return Axios.get(`/api/page?page=${page}&size=${size}`).then((res) => res.data);
   }
 
   findOne(id) {
@@ -26,7 +30,7 @@ class BoardService {
   }
 
   login(id, user, pw) {
-    return Axios.get(`/api/idCheck/${id}?id=${user}&passwd=${pw}`).then((res) => res.data);
+    // return Axios.get(`/api/idCheck/${id}?id=${user}&passwd=${pw}`).then((res) => res.data);
   }
 }
 
